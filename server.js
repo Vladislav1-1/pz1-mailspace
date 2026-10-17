@@ -6,6 +6,8 @@ const constraints = require('./config/constraints.json');
 const fileLogger = require('./middleware/logger');
 const authMiddleware = require('./middleware/auth');
 const { notFoundHandler, serverErrorHandler } = require('./middleware/errorHandler');
+const fs = require('fs');
+const path = require('path');
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -58,9 +60,27 @@ app.get('/item/:id', (req, res, next) => {
   res.render('item', { campaign, user: req.user });
 });
 
-app.get('/test-error', (req, res, next) => {
-  next(new Error("Тестовая ошибка базы данных!"));
+app.get('/rules', (req, res, next) => {
+  const filePath = path.join(__dirname, 'data', 'rules.txt');
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    if (err) {
+
+      return next(err);
+    }
+    res.render('item', { 
+      campaign: { 
+        id: 0, 
+        title: 'Правила сервиса', 
+        subject: 'Системный документ', 
+        recipientsCount: 0, 
+        createdAt: 'Постоянно' 
+      }, 
+      user: req.user 
+    });
+  });
 });
+
 app.use(notFoundHandler);
 app.use(serverErrorHandler);
 
