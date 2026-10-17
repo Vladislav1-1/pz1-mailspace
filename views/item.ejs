@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+<h1>Детали рассылки #<%= campaign.id %></h1>
+<hr>
+<h2><%= campaign.title %></h2>
+<p><strong>Тема письма:</strong> <%= campaign.subject %></p>
+<p><strong>Охват аудитории:</strong> <%= campaign.recipientsCount %> адресатов</p>
+<p><strong>Запись создана:</strong> <span class="badge"><%= campaign.createdAt %></span></p>
+
+<br>
+<a href="/?auth=1" class="btn" style="background: #7f8c8d;">← Назад</a>
+<%- include('partials/footer') %>

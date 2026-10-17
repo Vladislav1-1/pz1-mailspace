@@ -1,0 +1,5 @@
+{
+  "title": { "minLength": 3, "maxLength": 100 },
+  "subject": { "minLength": 3, "maxLength": 150 },
+  "minRecipients": 0
+}

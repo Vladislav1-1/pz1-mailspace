@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<h1>Создание новой рассылки</h1>
+
+<% if (error) { %>
+    <div class="error-msg"><%= error %></div>
+<% } %>
+
+<form action="/add?auth=1" method="POST">
+    <p>Название рассылки:</p>
+    <input type="text" name="title" style="width: 100%; padding: 8px;" >
+    
+    <p>Тема письма:</p>
+    <input type="text" name="subject" style="width: 100%; padding: 8px;" >
+    
+    <p>Количество получателей (число >= 0):</p>
+    <input type="number" name="recipientsCount" style="width: 100%; padding: 8px;" value="0">
+    
+    <br><br>
+    <button type="submit" class="btn">Сохранить</button>
+</form>
+<%- include('partials/footer') %>

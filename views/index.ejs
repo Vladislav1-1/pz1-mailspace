@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<h1>Список Email-рассылок</h1>
+
+<table>
+    <tr><th>ID</th><th>Название</th><th>Получатели</th><th>Создано (уникально)</th><th>Действия</th></tr>
+    <% if (campaigns.length > 0) { %>
+        <% campaigns.forEach(function(camp) { %>
+            <tr>
+                <td><%= camp.id %></td>
+                <td><%= camp.title %></td>
+                <td><%= camp.recipientsCount %> чел.</td>
+                <td><span class="badge">🕒 <%= camp.createdAt %></span></td>
+                <td><a href="/item/<%= camp.id %>?auth=1" class="btn">Подробнее</a></td>
+            </tr>
+        <% }) %>
+    <% } else { %>
+        <tr><td colspan="5">Нет данных</td></tr>
+    <% } %>
+</table>
+<%- include('partials/footer') %>
